@@ -18,6 +18,7 @@
     "socket.io": "^3.0.4"
   },
   "devDependencies": {
+    "dotenv-webpack": "^7.0.3",
     "nodemon": "^2.0.15"
   }
 }
