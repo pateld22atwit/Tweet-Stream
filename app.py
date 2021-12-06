@@ -34,10 +34,8 @@ def predict():
 
     tweet = request.get_json()
 
-    # print(tweet)
-    print(tweet['data']['text'])
-
-    comment = tweet['data']['text']
+    comment = tweet['text']
+    print(comment)
 
     text = re.sub("@\S+|https?:\S+|http?:\S|[^A-Za-z0-9]+", ' ', str(comment).lower()).strip()
     text = [wnl.lemmatize(i) for i in text.split(' ')]
@@ -61,7 +59,7 @@ def predict():
         output = 'Positive'
         print(output)
 
-    return render_template('index.html', prediction_text='This Tweet is ' + output)
+    return render_template('index.html', prediction_text=output)
 
 
 if __name__ == "__main__":

@@ -21,6 +21,9 @@ const rulesURL = 'https://api.twitter.com/2/tweets/sample/stream'
 const streamURL =
   'https://api.twitter.com/2/tweets/sample/stream?tweet.fields=public_metrics&expansions=author_id'
 
+const rules = [{ value: 'giveaway' }]
+
+
 function streamTweets(socket) {
   const stream = needle.get(streamURL, {
     headers: {

@@ -57,10 +57,13 @@
         let request= new XMLHttpRequest()
         let url = 'http://127.0.0.1:5000/predict'
 
-        request.open("Post", url)
+        let TOKEN = process.env.TWITTER_BEARER_TOKEN
+        request.open("Post", url, false)
+        request.setRequestHeader("Accept", "application/json");
+        request.setRequestHeader("Authorization", `Bearer ${TOKEN}`);
         request.setRequestHeader("Content-Type", "application/json");
-        request.send(JSON.stringify(tweet));
 
+        request.send(JSON.stringify(tweetData));
         console.log(request)
 
         const tweetEl = document.createElement('div')
@@ -69,18 +72,19 @@
             <div class="card-body">
                 <h5 class="card-title">${tweetData.text}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">${tweetData.username}</h6>
-                
+
                 <a class="btn btn-primary mt-3" href="https://twitter.com/${tweetData.username}/status/${tweetData.id}">
                     <i class="fab fa-twitter"></i>
                 </a>
+
+                {prediction_text}
                 <br>
-                 {{prediction_text}}
+
             </div>
         `
 
         tweetStream.appendChild(tweetEl)
 
-        // setTimeout(() => tweetEl.remove(), 5000)
       })
     </script>
   </body>
